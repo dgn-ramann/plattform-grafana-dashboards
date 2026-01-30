@@ -30,7 +30,7 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "enable": true,
+          "enable": false,
           "expr": "(kube_pod_container_status_restarts_total{cluster=\"$cluster\",namespace=\"$namespace\",container=\"$container\"} offset -10m - kube_pod_container_status_restarts_total{cluster=\"$cluster\",namespace=\"$namespace\",container=\"$container\"} \u003e= 1)\nand ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\",cluster=\"$cluster\",namespace=\"$namespace\",container=\"$container\"}[10m]) == 1",
           "hide": false,
           "iconColor": "red",
@@ -119,7 +119,7 @@
             },
             "editorMode": "code",
             "exemplar": false,
-            "expr": "sum(kube_customresource_vpa_containerrecommendations_upperbound{resource=\"cpu\", cluster=\"$cluster\", namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
+            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_upperbound_cpu{namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
             "instant": true,
             "legendFormat": "__auto",
             "range": false,
@@ -289,7 +289,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(rate(container_cpu_usage_seconds_total{cluster=\"$cluster\", namespace=\"$namespace\", pod=~\".*$targetName-(.+)\", container=~\"$container\"}[2m])) by (container,pod)",
+            "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\".*$targetName-(.+)\", container=~\"$container\"}[2m])) by (container,pod)",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -305,7 +305,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{resource=\"cpu\", cluster=\"$cluster\", namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
+            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -321,7 +321,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(kube_customresource_vpa_containerrecommendations_lowerbound{resource=\"cpu\", cluster=\"$cluster\", namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
+            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -337,7 +337,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(kube_customresource_vpa_containerrecommendations_upperbound{resource=\"cpu\", cluster=\"$cluster\", namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
+            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -595,7 +595,7 @@
             "refId": "A"
           }
         ],
-        "title": "Recommendation Target",
+        "title": "Rec. Target",
         "type": "stat"
       },
       {
@@ -804,7 +804,7 @@
             },
             "editorMode": "code",
             "exemplar": false,
-            "expr": "sum(kube_customresource_vpa_containerrecommendations_upperbound{resource=\"memory\", cluster=\"$cluster\", namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
+            "expr": "sum(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_upperbound_memory{namespace=\"$namespace\", container=~\"$container\", target_name=\"$targetName\", verticalpodautoscaler=~\"$vpa\"}) by (container)",
             "instant": true,
             "legendFormat": "__auto",
             "range": false,
@@ -1421,7 +1421,7 @@
         "type": "stat"
       },
       {
-        "collapsed": true,
+        "collapsed": false,
         "gridPos": {
           "h": 1,
           "w": 24,
@@ -1429,383 +1429,397 @@
           "y": 26
         },
         "id": 19,
-        "panels": [
-          {
-            "datasource": {
-              "type": "loki",
-              "uid": "be9uwpl5wcg00d"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "fixed"
-                },
-                "mappings": [],
-                "noValue": "0",
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 2,
-              "x": 0,
-              "y": 27
-            },
-            "id": 22,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "percentChangeColorMode": "standard",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "/^Value \\#A$/",
-                "values": false
-              },
-              "showPercentChange": false,
-              "textMode": "auto",
-              "wideLayout": true
-            },
-            "pluginVersion": "11.2.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "sum(\n  count_over_time(\n    {namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n    | namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n  [$__range])\n)",
-                "queryType": "instant",
-                "refId": "A"
-              }
-            ],
-            "title": "Total Evictions",
-            "type": "stat"
-          },
-          {
-            "datasource": {
-              "default": false,
-              "type": "loki",
-              "uid": "be9uwpl5wcg00d"
-            },
-            "description": "",
-            "gridPos": {
-              "h": 12,
-              "w": 12,
-              "x": 2,
-              "y": 27
-            },
-            "id": 20,
-            "options": {
-              "dedupStrategy": "none",
-              "enableLogDetails": true,
-              "prettifyLogMessage": false,
-              "showCommonLabels": false,
-              "showLabels": false,
-              "showTime": true,
-              "sortOrder": "Descending",
-              "wrapLogMessage": false
-            },
-            "targets": [
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "{namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n| namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n| line_format `VPA Updater evicted Pod {{.pod_extracted}} in Namespace {{.namespace_extracted}} to apply resource recommendation (VPA resource: {{.vpa}}).`",
-                "hide": false,
-                "legendFormat": "Evictions",
-                "queryType": "range",
-                "refId": "A"
-              },
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "{namespace=\"vpa\"} |= `\"OOM detected\"` \n| pattern `\u003c_\u003e oomInfo={\"Timestamp\":\"\u003coom_timestamp\u003e\",\"Memory\":\u003cmemory\u003e,\"ContainerID\":{\"Namespace\":\"\u003cnamespace_extracted\u003e\",\"PodName\":\"\u003cpod_extracted\u003e\",\"ContainerName\":\"\u003ccontainer_extracted\u003e\"}}`\n| namespace_extracted=~\"$namespace\"\n| line_format \"OOM detected at {{.oom_timestamp}} for Container {{.container_extracted}} in Pod {{.pod_extracted}} in Namespace {{.namespace_extracted}} (Last observed memory used: {{div .memory 1048576 }}MB).\"",
-                "hide": false,
-                "legendFormat": "OOM Detection",
-                "queryType": "range",
-                "refId": "B"
-              }
-            ],
-            "title": "Out of Memory Detections (OOM) \u0026 Eviction Logs",
-            "type": "logs"
-          },
-          {
-            "datasource": {
-              "type": "loki",
-              "uid": "be9uwpl5wcg00d"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "barWidthFactor": 0.6,
-                  "drawStyle": "bars",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "insertNulls": false,
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "normal"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 10,
-              "x": 14,
-              "y": 27
-            },
-            "id": 21,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": false
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "asc"
-              }
-            },
-            "targets": [
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "count_over_time(\n    {namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n    | namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n[10m])",
-                "legendFormat": "{{namespace_extracted}}/{{pod_extracted}}",
-                "queryType": "range",
-                "refId": "A"
-              }
-            ],
-            "title": "Evictions",
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "loki",
-              "uid": "be9uwpl5wcg00d"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "fixedColor": "red",
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "noValue": "0",
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 1
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 2,
-              "x": 0,
-              "y": 33
-            },
-            "id": 23,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "percentChangeColorMode": "standard",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "/^Value \\#OOM Detected$/",
-                "values": false
-              },
-              "showPercentChange": false,
-              "textMode": "auto",
-              "wideLayout": true
-            },
-            "pluginVersion": "11.2.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "sum(\n  count_over_time(\n    {namespace=\"vpa\"} |= \"OOM detected\" |= `\"Namespace\":\"$namespace\"`\n  [$__range])\n)",
-                "queryType": "instant",
-                "refId": "OOM Detected"
-              }
-            ],
-            "title": "OOM Detections",
-            "type": "stat"
-          },
-          {
-            "datasource": {
-              "type": "loki",
-              "uid": "be9uwpl5wcg00d"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic-by-name"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "axisSoftMax": 1,
-                  "barAlignment": 0,
-                  "barWidthFactor": 0.6,
-                  "drawStyle": "bars",
-                  "fillOpacity": 25,
-                  "gradientMode": "opacity",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "insertNulls": false,
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "normal"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 10,
-              "x": 14,
-              "y": 33
-            },
-            "id": 25,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": false
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "datasource": {
-                  "type": "loki",
-                  "uid": "be9uwpl5wcg00d"
-                },
-                "editorMode": "code",
-                "expr": "count by(namespace_extracted,pod_extracted,reason)(\n    count_over_time(\n        {namespace=\"vpa\"} |= `Not updating` | pattern `\u003c_\u003e \"\u003creason\u003e\" pod=\"\u003cnamespace_extracted\u003e/\u003cpod_extracted\u003e\"` \n        | namespace_extracted=~\"$namespace\" |~ \"$pods.+\"\n    [2m])\n)",
-                "legendFormat": "{{pod_extracted}}: {{reason}}",
-                "queryType": "range",
-                "refId": "A"
-              }
-            ],
-            "title": "Reasons for not evicting Pods",
-            "type": "timeseries"
-          }
-        ],
+        "panels": [],
         "title": "Updates",
         "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "be9uwpl5wcg00d"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "noValue": "0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 2,
+          "x": 0,
+          "y": 27
+        },
+        "id": 22,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Value \\#A$/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "editorMode": "code",
+            "expr": "sum(\n  count_over_time(\n    {namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n    | namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n  [$__range])\n)",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Total Evictions",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "default": false,
+          "type": "loki",
+          "uid": "be9uwpl5wcg00d"
+        },
+        "description": "",
+        "gridPos": {
+          "h": 12,
+          "w": 12,
+          "x": 2,
+          "y": 27
+        },
+        "id": 20,
+        "options": {
+          "dedupStrategy": "none",
+          "enableInfiniteScrolling": false,
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showControls": false,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "pluginVersion": "12.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "direction": "backward",
+            "editorMode": "code",
+            "expr": "{namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n| namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n| line_format `VPA Updater evicted Pod {{.pod_extracted}} in Namespace {{.namespace_extracted}} to apply resource recommendation (VPA resource: {{.vpa}}).`",
+            "hide": false,
+            "legendFormat": "Evictions",
+            "queryType": "range",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "direction": "backward",
+            "editorMode": "code",
+            "expr": "{namespace=\"vpa\"} |= `\"OOM detected\"` \n| pattern `\u003c_\u003e oomInfo={\"Timestamp\":\"\u003coom_timestamp\u003e\",\"Memory\":\u003cmemory\u003e,\"ContainerID\":{\"Namespace\":\"\u003cnamespace_extracted\u003e\",\"PodName\":\"\u003cpod_extracted\u003e\",\"ContainerName\":\"\u003ccontainer_extracted\u003e\"}}`\n| namespace_extracted=~\"$namespace\"\n| line_format \"OOM detected at {{.oom_timestamp}} for Container {{.container_extracted}} in Pod {{.pod_extracted}} in Namespace {{.namespace_extracted}} (Last observed memory used: {{div .memory 1048576 }}MB).\"",
+            "hide": false,
+            "legendFormat": "OOM Detection",
+            "queryType": "range",
+            "refId": "B"
+          }
+        ],
+        "title": "Out of Memory Detections (OOM) \u0026 Eviction Logs",
+        "type": "logs"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "be9uwpl5wcg00d"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 10,
+          "x": 14,
+          "y": 27
+        },
+        "id": 21,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "multi",
+            "sort": "asc"
+          }
+        },
+        "pluginVersion": "12.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "editorMode": "code",
+            "expr": "count_over_time(\n    {namespace=\"vpa\"} |= `reason=\"EvictedPod\"` | logfmt | pattern `\u003c_\u003e object=\"\u003cnamespace_extracted\u003e/\u003cvpa\u003e\" \u003c_\u003e Pod \u003cpod_extracted\u003e \u003c_\u003e` \n    | namespace_extracted=~\"$namespace\" | vpa=~\"$vpa\"\n[10m])",
+            "legendFormat": "{{namespace_extracted}}/{{pod_extracted}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Evictions",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "be9uwpl5wcg00d"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 2,
+          "x": 0,
+          "y": 33
+        },
+        "id": 23,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Value \\#OOM Detected$/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "editorMode": "code",
+            "expr": "sum(\n  count_over_time(\n    {namespace=\"vpa\"} |= \"OOM detected\" |= `\"Namespace\":\"$namespace\"`\n  [$__range])\n)",
+            "queryType": "instant",
+            "refId": "OOM Detected"
+          }
+        ],
+        "title": "OOM Detections",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "be9uwpl5wcg00d"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic-by-name"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 1,
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 25,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 10,
+          "x": 14,
+          "y": 33
+        },
+        "id": 25,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "be9uwpl5wcg00d"
+            },
+            "editorMode": "code",
+            "expr": "count by(namespace_extracted,pod_extracted,reason)(\n    count_over_time(\n        {namespace=\"vpa\"} |= `Not updating` | pattern `\u003c_\u003e \"\u003creason\u003e\" pod=\"\u003cnamespace_extracted\u003e/\u003cpod_extracted\u003e\"` \n        | namespace_extracted=~\"$namespace\" |~ \"$pods.+\"\n    [2m])\n)",
+            "legendFormat": "{{pod_extracted}}: {{reason}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Reasons for not evicting Pods",
+        "type": "timeseries"
       }
     ],
     "preload": false,
@@ -1854,13 +1868,14 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target,namespace)",
+          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu,namespace)",
           "includeAll": false,
           "label": "Namespace",
           "name": "namespace",
           "options": [],
           "query": {
-            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target,namespace)",
+            "qryType": 1,
+            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu,namespace)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 2,
@@ -1876,13 +1891,14 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\"},target_name)",
+          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\"},target_name)",
           "includeAll": false,
           "label": "Target",
           "name": "targetName",
           "options": [],
           "query": {
-            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\"},target_name)",
+            "qryType": 1,
+            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\"},target_name)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 2,
@@ -1898,14 +1914,14 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\"},verticalpodautoscaler)",
+          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\"},verticalpodautoscaler)",
           "includeAll": false,
           "label": "VPA",
           "name": "vpa",
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\"},verticalpodautoscaler)",
+            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\"},verticalpodautoscaler)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 2,
@@ -1922,7 +1938,7 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},container)",
+          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},container)",
           "includeAll": true,
           "label": "Container",
           "multi": true,
@@ -1930,7 +1946,7 @@
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},container)",
+            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},container)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 2,
@@ -1946,7 +1962,7 @@
             "type": "prometheus",
             "uid": "efay6dj4dm51cf"
           },
-          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},target_name)",
+          "definition": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},target_name)",
           "hide": 2,
           "includeAll": true,
           "multi": true,
@@ -1954,7 +1970,7 @@
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},target_name)",
+            "query": "label_values(kube_customresource_verticalpodautoscaler_status_recommendation_containerrecommendations_target_cpu{namespace=\"$namespace\", target_name=\"$targetName\", verticalpodautoscaler=\"$vpa\"},target_name)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 2,

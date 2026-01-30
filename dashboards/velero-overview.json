@@ -1568,7 +1568,7 @@
       }
     ],
     "refresh": "",
-    "schemaVersion": 42,
+    "schemaVersion": 41,
     "tags": [
       "velero",
       "backup"

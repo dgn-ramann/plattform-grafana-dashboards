@@ -3396,8 +3396,8 @@
       "list": [
         {
           "current": {
-            "text": "10.30.11.225",
-            "value": "10.30.11.225"
+            "text": "All",
+            "value": "$__all"
           },
           "datasource": {
             "type": "prometheus",
@@ -3486,7 +3486,8 @@
             "text": "prometheus-object01",
             "value": "afcc1g1mj7xfkb"
           },
-          "name": "datasource",
+          "description": "",
+          "name": "ds_prometheus",
           "options": [],
           "query": "prometheus",
           "refresh": 1,

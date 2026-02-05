@@ -5328,19 +5328,6 @@
             "legendFormat": "",
             "range": true,
             "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "${ds_prometheus}"
-            },
-            "editorMode": "code",
-            "expr": "sum(kube_node_status_allocatable{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
-            "hide": false,
-            "instant": false,
-            "legendFormat": "__auto",
-            "range": true,
-            "refId": "B"
           }
         ],
         "title": "Huge Pages Capacity on $node",

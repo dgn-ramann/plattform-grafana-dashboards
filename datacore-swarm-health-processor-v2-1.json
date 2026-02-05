@@ -913,6 +913,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -1064,6 +1068,10 @@
         "type": "row"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "Current HP cycle",
         "fieldConfig": {
           "defaults": {
@@ -1127,6 +1135,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "Total amount of streams examined so far.",
         "fieldConfig": {
           "defaults": {
@@ -1187,6 +1199,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "streams relocated locally on disk",
         "fieldConfig": {
           "defaults": {
@@ -1247,6 +1263,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1308,6 +1328,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "Total streams on this chassis.",
         "fieldConfig": {
           "defaults": {
@@ -1368,6 +1392,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1497,6 +1525,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -3071,8 +3103,8 @@
       "list": [
         {
           "current": {
-            "text": "10.30.11.103",
-            "value": "10.30.11.103"
+            "text": "10.30.11.205",
+            "value": "10.30.11.205"
           },
           "datasource": {
             "type": "prometheus",
@@ -3130,7 +3162,7 @@
       ]
     },
     "time": {
-      "from": "now-6M",
+      "from": "now-12h",
       "to": "now"
     },
     "timepicker": {},

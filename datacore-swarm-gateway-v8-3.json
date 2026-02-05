@@ -366,6 +366,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -428,8 +432,9 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(rate(caringo_gateway_request_count{instance=~\"$gateway\"}[24h]))\n",
+            "expr": "sum(rate(caringo_gateway_request_count{instance=~\"$gateway\"}[24h]))",
             "format": "time_series",
             "instant": false,
             "interval": "",
@@ -610,6 +615,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -678,8 +687,9 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": false,
-            "expr": "min(caringo_gateway_live_backendnode_count{backend=\"es\",job=~\"$gateway\"})\n",
+            "expr": "min(caringo_gateway_live_backendnode_count{backend=\"es\",job=~\"$gateway\"})",
             "format": "time_series",
             "instant": true,
             "interval": "",
@@ -778,6 +788,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -954,6 +968,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1101,12 +1119,14 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": true,
             "expr": "caringo_gateway_connection_available_gauge{instance=~\"$gateway\",backend=\"swarm\"}",
             "format": "time_series",
             "interval": "",
             "intervalFactor": 1,
             "legendFormat": "avail[{{instance}}]",
+            "range": true,
             "refId": "A"
           },
           {
@@ -1242,6 +1262,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1323,12 +1347,14 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": true,
             "expr": "jvm_memory_bytes_used{instance=~\"$gateway\",area=\"heap\"}",
             "format": "time_series",
             "interval": "",
             "intervalFactor": 1,
             "legendFormat": "JVM Heap Used[{{instance}}]",
+            "range": true,
             "refId": "A"
           }
         ],

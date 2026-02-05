@@ -132,6 +132,10 @@
         "type": "gauge"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -185,12 +189,14 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": true,
             "expr": "sum(process_open_fds{instance=~\"$gateway\"})",
             "format": "time_series",
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "GC coll/5min",
+            "legendFormat": "__auto",
+            "range": true,
             "refId": "A"
           }
         ],
@@ -198,6 +204,10 @@
         "type": "gauge"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -260,6 +270,7 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": false,
             "expr": "sum(caringo_gateway_connection_leased_gauge{backend=\"swarm\",instance=~\"$gateway\"})",
             "format": "time_series",
@@ -502,6 +513,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -570,13 +585,14 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": false,
-            "expr": "sum(caringo_gateway_live_backendnode_count{instance=~\"$gateway\",backend=\"swarm\"})\n",
+            "expr": "sum(caringo_gateway_live_backendnode_count{instance=~\"$gateway\",backend=\"swarm\"})",
             "format": "time_series",
             "instant": true,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "",
+            "legendFormat": "__auto",
             "refId": "A"
           }
         ],

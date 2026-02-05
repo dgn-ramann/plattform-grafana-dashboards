@@ -51,121 +51,6 @@
     "panels": [
       {
         "datasource": {
-          "uid": "${ds_prometheus}"
-        },
-        "description": "gesamte Kapazität an HugePages pro HugePage‑Typ",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "super-light-yellow",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "bytes"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Value (first)"
-              },
-              "properties": [
-                {
-                  "id": "displayName",
-                  "value": "Kapazität (GiB)"
-                },
-                {
-                  "id": "unit",
-                  "value": "bytes"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Time"
-              },
-              "properties": []
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "resource"
-              },
-              "properties": [
-                {
-                  "id": "displayName",
-                  "value": "HugePage Typ"
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 15,
-          "x": 0,
-          "y": 0
-        },
-        "id": 341,
-        "options": {
-          "minVizHeight": 75,
-          "minVizWidth": 75,
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true,
-          "sizing": "auto"
-        },
-        "pluginVersion": "12.3.2",
-        "targets": [
-          {
-            "editorMode": "code",
-            "exemplar": false,
-            "expr": "sum(kube_node_status_capacity{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
-            "format": "table",
-            "instant": false,
-            "legendFormat": "__auto",
-            "range": true,
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "${ds_prometheus}"
-            },
-            "editorMode": "code",
-            "expr": "sum(kube_node_status_allocatable{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
-            "hide": false,
-            "instant": false,
-            "legendFormat": "__auto",
-            "range": true,
-            "refId": "B"
-          }
-        ],
-        "title": "Node Huge Pages Overview",
-        "type": "gauge"
-      },
-      {
-        "datasource": {
           "type": "prometheus",
           "uid": "${ds_prometheus}"
         },
@@ -250,7 +135,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 7
+          "y": 2
         },
         "id": 340,
         "panels": [],
@@ -263,7 +148,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 8
+          "y": 3
         },
         "id": 261,
         "panels": [],
@@ -311,7 +196,7 @@
           "h": 4,
           "w": 3,
           "x": 0,
-          "y": 9
+          "y": 4
         },
         "id": 323,
         "options": {
@@ -439,7 +324,7 @@
           "h": 4,
           "w": 3,
           "x": 3,
-          "y": 9
+          "y": 4
         },
         "id": 20,
         "options": {
@@ -523,7 +408,7 @@
           "h": 4,
           "w": 3,
           "x": 6,
-          "y": 9
+          "y": 4
         },
         "id": 155,
         "options": {
@@ -597,7 +482,7 @@
           "h": 4,
           "w": 3,
           "x": 9,
-          "y": 9
+          "y": 4
         },
         "id": 16,
         "options": {
@@ -681,7 +566,7 @@
           "h": 4,
           "w": 3,
           "x": 12,
-          "y": 9
+          "y": 4
         },
         "id": 21,
         "options": {
@@ -764,7 +649,7 @@
           "h": 4,
           "w": 3,
           "x": 15,
-          "y": 9
+          "y": 4
         },
         "id": 154,
         "options": {
@@ -837,7 +722,7 @@
           "h": 2,
           "w": 2,
           "x": 18,
-          "y": 9
+          "y": 4
         },
         "id": 14,
         "maxDataPoints": 100,
@@ -917,7 +802,7 @@
           "h": 2,
           "w": 2,
           "x": 20,
-          "y": 9
+          "y": 4
         },
         "id": 75,
         "maxDataPoints": 100,
@@ -997,7 +882,7 @@
           "h": 2,
           "w": 2,
           "x": 22,
-          "y": 9
+          "y": 4
         },
         "id": 18,
         "maxDataPoints": 100,
@@ -1081,7 +966,7 @@
           "h": 2,
           "w": 2,
           "x": 18,
-          "y": 11
+          "y": 6
         },
         "id": 23,
         "maxDataPoints": 100,
@@ -1124,7 +1009,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 13
+          "y": 8
         },
         "id": 263,
         "panels": [],
@@ -1272,7 +1157,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 14
+          "y": 9
         },
         "id": 77,
         "options": {
@@ -1488,7 +1373,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 14
+          "y": 9
         },
         "id": 78,
         "options": {
@@ -1633,7 +1518,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 21
+          "y": 16
         },
         "id": 74,
         "options": {
@@ -1739,7 +1624,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 21
+          "y": 16
         },
         "id": 152,
         "options": {
@@ -1776,7 +1661,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 28
+          "y": 23
         },
         "id": 265,
         "panels": [
@@ -3553,7 +3438,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 29
+          "y": 24
         },
         "id": 266,
         "panels": [],
@@ -3645,7 +3530,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 30
+          "y": 25
         },
         "id": 135,
         "options": {
@@ -3755,7 +3640,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 30
+          "y": 25
         },
         "id": 130,
         "options": {
@@ -3882,7 +3767,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 40
+          "y": 35
         },
         "id": 131,
         "options": {
@@ -3991,7 +3876,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 40
+          "y": 35
         },
         "id": 138,
         "options": {
@@ -4152,7 +4037,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 50
+          "y": 45
         },
         "id": 136,
         "options": {
@@ -4262,7 +4147,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 50
+          "y": 45
         },
         "id": 191,
         "options": {
@@ -4390,7 +4275,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 60
+          "y": 55
         },
         "id": 160,
         "options": {
@@ -4541,7 +4426,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 60
+          "y": 55
         },
         "id": 70,
         "options": {
@@ -4659,7 +4544,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 70
+          "y": 65
         },
         "id": 129,
         "options": {
@@ -4784,7 +4669,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 70
+          "y": 65
         },
         "id": 137,
         "options": {
@@ -5169,7 +5054,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 80
+          "y": 75
         },
         "id": 128,
         "options": {
@@ -5289,7 +5174,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 80
+          "y": 75
         },
         "id": 140,
         "options": {
@@ -5352,12 +5237,126 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "uid": "${ds_prometheus}"
+        },
+        "description": "gesamte Kapazität an HugePages pro HugePage‑Typ",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "footer": {
+                "reducers": []
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "super-light-yellow",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 198
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 85
+        },
+        "id": 341,
+        "interval": "0",
+        "maxDataPoints": 1,
+        "options": {
+          "cellHeight": "sm",
+          "enablePagination": false,
+          "frameIndex": 1,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "resource"
+            }
+          ]
+        },
+        "pluginVersion": "12.3.2",
+        "targets": [
+          {
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum(kube_node_status_capacity{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{resource}} Capacity",
+            "range": false,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${ds_prometheus}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum(kube_node_status_allocatable{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "{{resource}} Allocatable",
+            "range": false,
+            "refId": "B"
+          }
+        ],
+        "title": "Huge Pages Capacity on $node",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {}
+          }
+        ],
+        "type": "table"
+      },
+      {
         "collapsed": true,
         "gridPos": {
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 90
+          "y": 89
         },
         "id": 267,
         "panels": [
@@ -5878,7 +5877,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 91
+          "y": 90
         },
         "id": 293,
         "panels": [
@@ -6586,7 +6585,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 92
+          "y": 91
         },
         "id": 312,
         "panels": [
@@ -7408,7 +7407,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 93
+          "y": 92
         },
         "id": 269,
         "panels": [
@@ -8203,7 +8202,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 94
+          "y": 93
         },
         "id": 304,
         "panels": [
@@ -8703,7 +8702,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 95
+          "y": 94
         },
         "id": 296,
         "panels": [
@@ -9228,7 +9227,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 96
+          "y": 95
         },
         "id": 270,
         "panels": [
@@ -10380,7 +10379,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 97
+          "y": 96
         },
         "id": 271,
         "panels": [],
@@ -10482,7 +10481,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 98
+          "y": 97
         },
         "id": 28,
         "options": {
@@ -10591,7 +10590,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 98
+          "y": 97
         },
         "id": 41,
         "options": {
@@ -10692,7 +10691,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 108
+          "y": 107
         },
         "id": 44,
         "options": {
@@ -10802,7 +10801,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 108
+          "y": 107
         },
         "id": 219,
         "options": {
@@ -10843,7 +10842,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 118
+          "y": 117
         },
         "id": 272,
         "panels": [
@@ -12490,7 +12489,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 119
+          "y": 118
         },
         "id": 273,
         "panels": [
@@ -13646,7 +13645,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 120
+          "y": 119
         },
         "id": 274,
         "panels": [
@@ -15207,7 +15206,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 121
+          "y": 120
         },
         "id": 279,
         "panels": [],
@@ -15282,7 +15281,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 122
+          "y": 121
         },
         "id": 40,
         "options": {
@@ -15382,7 +15381,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 122
+          "y": 121
         },
         "id": 308,
         "options": {
@@ -15537,7 +15536,7 @@
           "h": 10,
           "w": 10,
           "x": 0,
-          "y": 132
+          "y": 131
         },
         "id": 149,
         "options": {
@@ -15700,7 +15699,7 @@
           "h": 10,
           "w": 10,
           "x": 10,
-          "y": 132
+          "y": 131
         },
         "id": 64,
         "options": {
@@ -15782,7 +15781,7 @@
           "h": 10,
           "w": 4,
           "x": 20,
-          "y": 132
+          "y": 131
         },
         "id": 157,
         "options": {

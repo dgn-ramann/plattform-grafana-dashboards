@@ -1362,6 +1362,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {

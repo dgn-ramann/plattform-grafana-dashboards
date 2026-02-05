@@ -59,16 +59,6 @@
             "color": {
               "mode": "thresholds"
             },
-            "custom": {
-              "align": "auto",
-              "cellOptions": {
-                "type": "auto"
-              },
-              "footer": {
-                "reducers": []
-              },
-              "inspect": false
-            },
             "mappings": [],
             "thresholds": {
               "mode": "absolute",
@@ -107,12 +97,7 @@
                 "id": "byName",
                 "options": "Time"
               },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 323
-                }
-              ]
+              "properties": []
             },
             {
               "matcher": {
@@ -136,14 +121,28 @@
         },
         "id": 341,
         "options": {
-          "cellHeight": "sm",
-          "showHeader": true,
-          "sortBy": [
-            {
-              "desc": false,
-              "displayName": "resource"
-            }
-          ]
+          "displayMode": "gradient",
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "maxVizHeight": 300,
+          "minVizHeight": 16,
+          "minVizWidth": 8,
+          "namePlacement": "left",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "showUnfilled": true,
+          "sizing": "auto",
+          "valueMode": "color"
         },
         "pluginVersion": "12.3.2",
         "targets": [
@@ -178,33 +177,7 @@
             }
           }
         ],
-        "type": "table"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 7
-        },
-        "id": 340,
-        "panels": [],
-        "title": "Row title",
-        "type": "row"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 8
-        },
-        "id": 261,
-        "panels": [],
-        "title": "Quick CPU / Mem / Disk",
-        "type": "row"
+        "type": "bargauge"
       },
       {
         "datasource": {
@@ -285,6 +258,32 @@
         ],
         "title": "Uptime",
         "type": "stat"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 340,
+        "panels": [],
+        "title": "Row title",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 261,
+        "panels": [],
+        "title": "Quick CPU / Mem / Disk",
+        "type": "row"
       },
       {
         "datasource": {

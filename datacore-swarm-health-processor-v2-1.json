@@ -1930,6 +1930,10 @@
         "type": "row"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1989,6 +1993,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2048,6 +2056,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2158,6 +2170,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2217,6 +2233,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2335,6 +2355,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2420,6 +2444,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2479,6 +2507,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2538,6 +2570,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2597,6 +2633,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "Average time needed to service a write I/O request by the drive",
         "fieldConfig": {
           "defaults": {
@@ -2723,6 +2763,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "average time needed to service an I/O read request by the drive",
         "fieldConfig": {
           "defaults": {
@@ -2849,6 +2893,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2912,37 +2960,6 @@
                   "value": "percentunit"
                 }
               ]
-            },
-            {
-              "__systemRef": "hideSeriesFrom",
-              "matcher": {
-                "id": "byNames",
-                "options": {
-                  "mode": "exclude",
-                  "names": [
-                    "sda-trapped",
-                    "sdb-trapped",
-                    "sdc-trapped",
-                    "sdd-trapped",
-                    "sde-trapped",
-                    "sdf-trapped",
-                    "sdg-trapped",
-                    "sdh-trapped"
-                  ],
-                  "prefix": "All except:",
-                  "readOnly": true
-                }
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": false,
-                    "tooltip": true,
-                    "viz": true
-                  }
-                }
-              ]
             }
           ]
         },
@@ -2988,6 +3005,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -3103,8 +3124,8 @@
       "list": [
         {
           "current": {
-            "text": "10.30.11.205",
-            "value": "10.30.11.205"
+            "text": "10.30.11.83",
+            "value": "10.30.11.83"
           },
           "datasource": {
             "type": "prometheus",
@@ -3162,7 +3183,7 @@
       ]
     },
     "time": {
-      "from": "now-12h",
+      "from": "now-6h",
       "to": "now"
     },
     "timepicker": {},

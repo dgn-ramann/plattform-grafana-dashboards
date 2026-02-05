@@ -353,7 +353,7 @@
           {
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(rate(caringo_gateway_request_count{instance=~\"$gateway\"}[5m])) ",
+            "expr": "sum(rate(caringo_gateway_request_count{instance=~\"$gateway\"}[5m]))",
             "format": "time_series",
             "instant": false,
             "interval": "",
@@ -442,6 +442,10 @@
         "type": "stat"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -504,13 +508,14 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "editorMode": "code",
             "exemplar": false,
-            "expr": "label_replace(topk(1,caringo_gateway_info{instance=~\"$gateway\"}), \"version\", \"$1\", \"version\", \"^([0-9].[0-9].[0-9]).*\")\n",
+            "expr": "label_replace(topk(1,caringo_gateway_info{instance=~\"$gateway\"}), \"version\", \"$1\", \"version\", \"^([0-9].[0-9].[0-9]).*\")",
             "format": "time_series",
             "instant": true,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "{{version}}",
+            "legendFormat": "__auto",
             "refId": "A"
           }
         ],

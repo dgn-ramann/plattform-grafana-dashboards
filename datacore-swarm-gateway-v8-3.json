@@ -3480,6 +3480,18 @@
           "query": "2m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
           "refresh": 2,
           "type": "interval"
+        },
+        {
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "name": "datasource",
+          "options": [],
+          "query": "grafana",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
         }
       ]
     },

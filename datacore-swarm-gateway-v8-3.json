@@ -44,6 +44,10 @@
     ],
     "panels": [
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -109,13 +113,18 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${ds_prometheus}"
+            },
+            "editorMode": "code",
             "exemplar": false,
             "expr": "sum(irate(process_cpu_seconds_total{instance=~\"$gateway\"}[5m]))",
             "format": "time_series",
             "instant": true,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "CPU load",
+            "legendFormat": "__auto",
             "refId": "A"
           }
         ],

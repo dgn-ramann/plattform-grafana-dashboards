@@ -115,34 +115,25 @@
         },
         "gridPos": {
           "h": 7,
-          "w": 5,
+          "w": 15,
           "x": 0,
           "y": 0
         },
         "id": 341,
         "options": {
-          "displayMode": "gradient",
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "maxVizHeight": 300,
-          "minVizHeight": 16,
-          "minVizWidth": 8,
-          "namePlacement": "left",
-          "orientation": "horizontal",
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
             ],
             "fields": "",
-            "values": true
+            "values": false
           },
-          "showUnfilled": true,
-          "sizing": "auto",
-          "valueMode": "color"
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
         },
         "pluginVersion": "12.3.2",
         "targets": [
@@ -155,29 +146,23 @@
             "legendFormat": "__auto",
             "range": true,
             "refId": "A"
-          }
-        ],
-        "title": "Huge Pages Capacity on $node",
-        "transformations": [
+          },
           {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Value": {
-                  "aggregations": [
-                    "first"
-                  ],
-                  "operation": "aggregate"
-                },
-                "resource": {
-                  "aggregations": [],
-                  "operation": "groupby"
-                }
-              }
-            }
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${ds_prometheus}"
+            },
+            "editorMode": "code",
+            "expr": "sum(kube_node_status_allocatable{resource=~\"hugepages_.*\",node=\"$node\"}) by (resource)",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
           }
         ],
-        "type": "bargauge"
+        "title": "Node Huge Pages Overview",
+        "type": "gauge"
       },
       {
         "datasource": {

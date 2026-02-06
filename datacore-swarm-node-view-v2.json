@@ -3476,20 +3476,20 @@
         },
         {
           "current": {
-            "text": "gateway-nodeexporter",
-            "value": "gateway-nodeexporter"
+            "text": "swarm",
+            "value": "swarm"
           },
           "datasource": {
             "type": "prometheus",
             "uid": "afcc1g1mj7xfkb"
           },
-          "definition": "label_values(node_exporter_build_info{name=\"$name\"},job)",
+          "definition": "label_values(node_exporter_build_info,job)",
           "includeAll": false,
           "name": "name",
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(node_exporter_build_info{name=\"$name\"},job)",
+            "query": "label_values(node_exporter_build_info,job)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 1,
@@ -3499,25 +3499,47 @@
         },
         {
           "current": {
-            "text": "10.30.11.19",
-            "value": "10.30.11.19"
+            "text": "10.30.11.12",
+            "value": "10.30.11.12"
           },
           "datasource": {
             "type": "prometheus",
             "uid": "afcc1g1mj7xfkb"
           },
-          "definition": "label_values(node_exporter_build_info,instance)",
+          "definition": "label_values(node_exporter_build_info{job=\"$name\"},instance)",
           "includeAll": false,
           "name": "node",
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(node_exporter_build_info,instance)",
+            "query": "label_values(node_exporter_build_info{job=\"$name\"},instance)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 1,
           "regex": "",
           "sort": 1,
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "object01",
+            "value": "object01"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "afcc1g1mj7xfkb"
+          },
+          "definition": "label_values(node_exporter_build_info,cluster)",
+          "description": "",
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(node_exporter_build_info,cluster)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
           "type": "query"
         }
       ]

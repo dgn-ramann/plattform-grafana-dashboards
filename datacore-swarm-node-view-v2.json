@@ -117,7 +117,7 @@
               "uid": "afcc1g1mj7xfkb"
             },
             "editorMode": "code",
-            "expr": "time() - node_boot_time_seconds{instance=~\"$node\"}",
+            "expr": "time() - node_boot_time_seconds{cluster=~\"$cluster\",instance=~\"$node\"}",
             "legendFormat": "__auto",
             "range": true,
             "refId": "A"
@@ -437,11 +437,13 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
-            "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
+            "editorMode": "code",
+            "expr": "(1 - (node_memory_MemAvailable_bytes{cluster=~\"$cluster\",instance=~\"$node\"} / (node_memory_MemTotal_bytes{cluster=~\"$cluster\",instance=~\"$node\"})))* 100",
             "format": "time_series",
             "hide": false,
             "interval": "10s",
             "intervalFactor": 1,
+            "range": true,
             "refId": "A",
             "step": 20
           }
@@ -510,7 +512,8 @@
         "pluginVersion": "12.3.2",
         "targets": [
           {
-            "expr": "node_filefd_allocated{instance=~\"$node\"}",
+            "editorMode": "code",
+            "expr": "node_filefd_allocated{cluster=~\"$cluster\",instance=~\"$node\"}",
             "format": "time_series",
             "instant": false,
             "interval": "10s",
@@ -3476,8 +3479,30 @@
         },
         {
           "current": {
-            "text": "swarm",
-            "value": "swarm"
+            "text": "object01",
+            "value": "object01"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "afcc1g1mj7xfkb"
+          },
+          "definition": "label_values(node_exporter_build_info,cluster)",
+          "description": "",
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(node_exporter_build_info,cluster)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "scs-nodeexporter",
+            "value": "scs-nodeexporter"
           },
           "datasource": {
             "type": "prometheus",
@@ -3499,53 +3524,31 @@
         },
         {
           "current": {
-            "text": "10.30.11.12",
-            "value": "10.30.11.12"
+            "text": "10.30.11.1",
+            "value": "10.30.11.1"
           },
           "datasource": {
             "type": "prometheus",
             "uid": "afcc1g1mj7xfkb"
           },
-          "definition": "label_values(node_exporter_build_info{job=\"$name\"},instance)",
+          "definition": "label_values(node_exporter_build_info{job=\"$name\", cluster=\"$cluster\"},instance)",
           "includeAll": false,
           "name": "node",
           "options": [],
           "query": {
             "qryType": 1,
-            "query": "label_values(node_exporter_build_info{job=\"$name\"},instance)",
+            "query": "label_values(node_exporter_build_info{job=\"$name\", cluster=\"$cluster\"},instance)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
           "refresh": 1,
           "regex": "",
           "sort": 1,
           "type": "query"
-        },
-        {
-          "current": {
-            "text": "object01",
-            "value": "object01"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "afcc1g1mj7xfkb"
-          },
-          "definition": "label_values(node_exporter_build_info,cluster)",
-          "description": "",
-          "name": "cluster",
-          "options": [],
-          "query": {
-            "qryType": 1,
-            "query": "label_values(node_exporter_build_info,cluster)",
-            "refId": "PrometheusVariableQueryEditor-VariableQuery"
-          },
-          "refresh": 1,
-          "regex": "",
-          "type": "query"
         }
       ]
     },
     "time": {
-      "from": "now-24h",
+      "from": "now-6h",
       "to": "now"
     },
     "timepicker": {

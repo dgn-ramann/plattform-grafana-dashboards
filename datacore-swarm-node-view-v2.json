@@ -1958,6 +1958,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2113,6 +2117,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2233,6 +2241,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2352,6 +2364,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2471,6 +2487,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2562,6 +2582,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2677,6 +2701,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2768,6 +2796,10 @@
         "type": "row"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2866,6 +2898,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2956,6 +2992,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -3046,6 +3086,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -3447,8 +3491,8 @@
         },
         {
           "current": {
-            "text": "10.30.11.103",
-            "value": "10.30.11.103"
+            "text": "10.30.11.19",
+            "value": "10.30.11.19"
           },
           "datasource": {
             "type": "prometheus",
@@ -3471,7 +3515,7 @@
       ]
     },
     "time": {
-      "from": "now-12h",
+      "from": "now-24h",
       "to": "now"
     },
     "timepicker": {

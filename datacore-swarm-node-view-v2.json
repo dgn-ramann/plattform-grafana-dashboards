@@ -3181,6 +3181,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "description": "If you see \"No Data\" it means cpu scaling is not enabled in the BIOS. Check the bios performance workload profile.",
         "fieldConfig": {
           "defaults": {
@@ -3293,6 +3297,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "afcc1g1mj7xfkb"
+        },
         "fieldConfig": {
           "defaults": {
             "color": {

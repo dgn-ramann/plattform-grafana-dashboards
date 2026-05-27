@@ -41,7 +41,8 @@
       },
       {
         "datasource": {
-          "uid": "$datasource"
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
         },
         "fieldConfig": {
           "defaults": {
@@ -125,7 +126,8 @@
         "targets": [
           {
             "datasource": {
-              "uid": "$datasource"
+              "type": "prometheus",
+              "uid": "${ds_prometheus}"
             },
             "editorMode": "code",
             "expr": "avg(rate(kubevirt_vmi_vcpu_seconds_total{namespace=\"$namespace\", name=\"$vm\"}[5m])) by (domain, name)",
@@ -156,7 +158,8 @@
       },
       {
         "datasource": {
-          "uid": "$datasource"
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
         },
         "description": "NOT what is used IN VM",
         "fieldConfig": {
@@ -241,7 +244,8 @@
         "targets": [
           {
             "datasource": {
-              "uid": "$datasource"
+              "type": "prometheus",
+              "uid": "${ds_prometheus}"
             },
             "editorMode": "code",
             "expr": "kubevirt_vmi_memory_resident_bytes{namespace=\"$namespace\", name=\"$vm\"}",
@@ -259,7 +263,8 @@
       },
       {
         "datasource": {
-          "uid": "$datasource"
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
         },
         "fieldConfig": {
           "defaults": {
@@ -351,7 +356,8 @@
       },
       {
         "datasource": {
-          "uid": "$datasource"
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
         },
         "fieldConfig": {
           "defaults": {
@@ -443,7 +449,8 @@
       },
       {
         "datasource": {
-          "uid": "$datasource"
+          "type": "prometheus",
+          "uid": "${ds_prometheus}"
         },
         "fieldConfig": {
           "defaults": {

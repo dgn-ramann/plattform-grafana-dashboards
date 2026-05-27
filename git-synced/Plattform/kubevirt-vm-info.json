@@ -979,7 +979,7 @@
         {
           "current": {
             "text": "thanos-osv-de-west01",
-            "value": "${datasource}"
+            "value": "bfbfeew19bfggb"
           },
           "includeAll": false,
           "name": "datasource",
@@ -994,7 +994,10 @@
             "text": "tc10t",
             "value": "tc10t"
           },
-          "datasource": "${ds_prometheus}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
           "definition": "label_values(kubevirt_vmi_cpu_usage_seconds_total,namespace)",
           "includeAll": false,
           "label": "namespace",
@@ -1015,7 +1018,10 @@
             "text": "tc10t-master1",
             "value": "tc10t-master1"
           },
-          "datasource": "${ds_prometheus}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
           "definition": "label_values(kubevirt_vmi_cpu_usage_seconds_total{namespace=\"$namespace\"},name)",
           "includeAll": false,
           "label": "vm",
@@ -1032,14 +1038,6 @@
           "type": "query"
         }
       ]
-    },
-    "time": {
-      "from": "now-1h",
-      "to": "now"
-    },
-    "timepicker": {},
-    "timezone": "",
-    "title": "KubeVirt VM Info",
-    "weekStart": ""
+    }
   }
 }

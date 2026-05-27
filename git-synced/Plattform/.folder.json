@@ -2,9 +2,9 @@
     "apiVersion": "folder.grafana.app/v1beta1",
     "kind": "Folder",
     "metadata": {
-        "name": "platform"
+        "name": "plattform"
     },
     "spec": {
-        "title": "Platform"
+        "title": "Plattform"
     }
 }

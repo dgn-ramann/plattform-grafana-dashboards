@@ -556,7 +556,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "bfbfeew19bfggb"
+          "uid": "${datasource}"
         },
         "fieldConfig": {
           "defaults": {
@@ -660,7 +660,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_iops_read_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -674,7 +674,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_iops_write_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -691,7 +691,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "bfbfeew19bfggb"
+          "uid": "${datasource}"
         },
         "fieldConfig": {
           "defaults": {
@@ -788,7 +788,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_read_traffic_bytes_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -802,7 +802,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_write_traffic_bytes_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -819,7 +819,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "bfbfeew19bfggb"
+          "uid": "${datasource}"
         },
         "fieldConfig": {
           "defaults": {
@@ -928,7 +928,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_read_times_seconds_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -942,7 +942,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bfbfeew19bfggb"
+              "uid": "${datasource}"
             },
             "editorMode": "code",
             "expr": "irate(kubevirt_vmi_storage_write_times_seconds_total{namespace=\"$namespace\", name=\"$vm\"}[1m])",
@@ -979,7 +979,8 @@
         {
           "current": {
             "text": "thanos-osv-de-west01",
-            "value": "bfbfeew19bfggb"
+            "value": ${datasource
+            }
           },
           "includeAll": false,
           "name": "datasource",
@@ -994,7 +995,7 @@
             "text": "tc10t",
             "value": "tc10t"
           },
-          "datasource": "$datasource",
+          "datasource": "${ds_prometheus}",
           "definition": "label_values(kubevirt_vmi_cpu_usage_seconds_total,namespace)",
           "includeAll": false,
           "label": "namespace",
@@ -1015,7 +1016,7 @@
             "text": "tc10t-master1",
             "value": "tc10t-master1"
           },
-          "datasource": "$datasource",
+          "datasource": "${ds_prometheus}",
           "definition": "label_values(kubevirt_vmi_cpu_usage_seconds_total{namespace=\"$namespace\"},name)",
           "includeAll": false,
           "label": "vm",
